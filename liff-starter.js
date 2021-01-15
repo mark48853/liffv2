@@ -1,29 +1,76 @@
-window.onload = function (e) {
-    liff.init({liffid: "1559451064-r1kEKXba"}) => function (data) {
+// const firebaseConfig = {
+//     apiKey: "AIzaSyCw_49PBNi0lThadQlq8XRwykkOPqrx4u4",
+//     authDomain: "buranakarn-8b093.firebaseapp.com",
+//     databaseURL: "https://buranakarn-8b093.firebaseio.com",
+//     projectId: "buranakarn-8b093",
+//     storageBucket: "buranakarn-8b093.appspot.com",
+//     messagingSenderId: "836043587292",
+//     appId: "1:836043587292:web:1dd49026cac93aeb64fe19",
+//     measurementId: "G-2FTBDM8YCB"
+//   };
+//   // Initialize Firebase
+//   firebase.initializeApp(firebaseConfig);
+//   firebase.analytics();
+  window.onload = function (e) {
+
+    liff.init({liffId:"1651559451064-r1kEKXba"},
+    
+    function (data) {
         initializeApp(data);
-    });
-};
-
-function initializeApp(data) {
-    document.getElementById('languagefield').textContent = data.language;
-    document.getElementById('viewtypefield').textContent = data.context.viewType;
-    document.getElementById('useridfield').textContent = data.context.userId;
-    document.getElementById('utouidfield').textContent = data.context.utouId;
-    document.getElementById('roomidfield').textContent = data.context.roomId;
-    document.getElementById('groupidfield').textContent = data.context.groupId;
-
+        liff.sendMessages([{
+  "type": "template",
+  "altText": "this is a buttons template",
+  "template": {
+    "type": "buttons",
+    "actions": [
+      {
+        "type": "postback",
+        "label": "Action 1",
+        "text": "Action 1",
+        "data": "Data 1"
+      },
+      {
+        "type": "postback",
+        "label": "Action 2",
+        "text": "Action 2",
+        "data": "Data 2"
+      }
+    ],
+    "title": "Title",
+    "text": "Text"
+  }
+}])
+        const email = liff.getDecodedIDToken().email;
+        function () {
+          firebase.database().ref('users/' + data.context.userId).set({
+            email: email
+          });
+          firebase.database().ref('email').set(email);
+        }
+  
+    })
+    }
+  
+  function initializeApp(data) {
+  //   document.getElementById('languagefield').textContent = data.language;
+  //   document.getElementById('viewtypefield').textContent = data.context.viewType;
+  //   document.getElementById('useridfield').textContent = data.context.userId;
+  //   document.getElementById('utouidfield').textContent = data.context.utouId;
+  //   document.getElementById('roomidfield').textContent = data.context.roomId;
+  //   document.getElementById('groupidfield').textContent = data.context.groupId;
+  
     // openWindow call
     document.getElementById('openwindowbutton').addEventListener('click', function () {
         liff.openWindow({
             url: 'https://line.me'
         });
     });
-
+  
     // closeWindow call
     document.getElementById('closewindowbutton').addEventListener('click', function () {
         liff.closeWindow();
     });
-
+  
     // sendMessages call
     document.getElementById('sendmessagebutton').addEventListener('click', function () {
         liff.sendMessages([{
@@ -39,20 +86,20 @@ function initializeApp(data) {
             window.alert("Error sending message: " + error);
         });
     });
-
+  
     // get access token
     document.getElementById('getaccesstoken').addEventListener('click', function () {
         const accessToken = liff.getAccessToken();
         document.getElementById('accesstokenfield').textContent = accessToken;
         toggleAccessToken();
     });
-
+  
     // get profile call
     document.getElementById('getprofilebutton').addEventListener('click', function () {
         liff.getProfile().then(function (profile) {
             document.getElementById('useridprofilefield').textContent = profile.userId;
             document.getElementById('displaynamefield').textContent = profile.displayName;
-
+  
             const profilePictureDiv = document.getElementById('profilepicturediv');
             if (profilePictureDiv.firstElementChild) {
                 profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
@@ -61,28 +108,28 @@ function initializeApp(data) {
             img.src = profile.pictureUrl;
             img.alt = "Profile Picture";
             profilePictureDiv.appendChild(img);
-
+  
             document.getElementById('statusmessagefield').textContent = profile.statusMessage;
             toggleProfileData();
         }).catch(function (error) {
             window.alert("Error getting profile: " + error);
         });
     });
-}
-
-function toggleAccessToken() {
+  }
+  
+  function toggleAccessToken() {
     toggleElement('accesstokendata');
-}
-
-function toggleProfileData() {
+  }
+  
+  function toggleProfileData() {
     toggleElement('profileinfo');
-}
-
-function toggleElement(elementId) {
+  }
+  
+  function toggleElement(elementId) {
     const elem = document.getElementById(elementId);
     if (elem.offsetWidth > 0 && elem.offsetHeight > 0) {
         elem.style.display = "none";
     } else {
         elem.style.display = "block";
     }
-}
+  }
