@@ -1,5 +1,5 @@
 window.onload = function (e) {
-    liff.init(function (data) {
+    liff.init({liffid: "1559451064-r1kEKXba"}) => function (data) {
         initializeApp(data);
     });
 };
