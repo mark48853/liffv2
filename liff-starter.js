@@ -1,16 +1,16 @@
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCw_49PBNi0lThadQlq8XRwykkOPqrx4u4",
-//     authDomain: "buranakarn-8b093.firebaseapp.com",
-//     databaseURL: "https://buranakarn-8b093.firebaseio.com",
-//     projectId: "buranakarn-8b093",
-//     storageBucket: "buranakarn-8b093.appspot.com",
-//     messagingSenderId: "836043587292",
-//     appId: "1:836043587292:web:1dd49026cac93aeb64fe19",
-//     measurementId: "G-2FTBDM8YCB"
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
+const firebaseConfig = {
+    apiKey: "AIzaSyCw_49PBNi0lThadQlq8XRwykkOPqrx4u4",
+    authDomain: "buranakarn-8b093.firebaseapp.com",
+    databaseURL: "https://buranakarn-8b093.firebaseio.com",
+    projectId: "buranakarn-8b093",
+    storageBucket: "buranakarn-8b093.appspot.com",
+    messagingSenderId: "836043587292",
+    appId: "1:836043587292:web:1dd49026cac93aeb64fe19",
+    measurementId: "G-2FTBDM8YCB"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
   window.onload = function (e) {
 
     liff.init({liffId:"1651559451064-r1kEKXba"},
@@ -52,12 +52,12 @@
     }
   
   function initializeApp(data) {
-  //   document.getElementById('languagefield').textContent = data.language;
-  //   document.getElementById('viewtypefield').textContent = data.context.viewType;
-  //   document.getElementById('useridfield').textContent = data.context.userId;
-  //   document.getElementById('utouidfield').textContent = data.context.utouId;
-  //   document.getElementById('roomidfield').textContent = data.context.roomId;
-  //   document.getElementById('groupidfield').textContent = data.context.groupId;
+    document.getElementById('languagefield').textContent = data.language;
+    document.getElementById('viewtypefield').textContent = data.context.viewType;
+    document.getElementById('useridfield').textContent = data.context.userId;
+    document.getElementById('utouidfield').textContent = data.context.utouId;
+    document.getElementById('roomidfield').textContent = data.context.roomId;
+    document.getElementById('groupidfield').textContent = data.context.groupId;
   
     // openWindow call
     document.getElementById('openwindowbutton').addEventListener('click', function () {
